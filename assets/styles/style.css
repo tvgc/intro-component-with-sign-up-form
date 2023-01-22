@@ -1,0 +1,278 @@
+/*-----------------------------------*\
+  #FONTS
+\*-----------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/*-----------------------------------*\
+  #VARIABLES
+\*-----------------------------------*/
+:root {
+    /*Colors*/
+    
+    /*primary*/
+    --red-color: hsl(0, 100%, 74%);
+    --green-color: hsl(154, 59%, 51%);
+    /*accent*/
+    --blue-gradient: hsl(248, 32%, 49%);
+
+    /*Typography*/
+    --body-font-family: 'Poppins', sans-serif;
+
+    --text-size: 1.6rem;
+    --title-size: 2.8rem;
+
+}
+
+/*RESPONSIVE*/
+
+/*768px*/
+@media screen and (min-width: 768px){
+    :root {
+        --title-size: 5rem;
+    }
+}
+
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+ input,
+ button {
+    background: none;
+    border: none;
+    font: inherit;
+}
+
+input { width: 100%; }
+
+button { cursor: pointer; }
+
+img {
+    max-width: 100%; 
+    height: auto;
+}
+
+html {
+    font-family: var(--body-font-family);
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: var(--text-size);
+    font-family: var(--body-font-family);
+    background-color: var(--red-color);
+    background-image: url('../images/bg-intro-mobile.png');
+    position: relative;
+    min-height: 100vh;
+}
+
+/*-----------------------------------*\
+  #REUSABLE
+\*-----------------------------------*/
+.container {
+    max-width: 100%;
+    padding-inline: 2.4rem;
+}
+
+.title {
+    color: #FFFFFF;
+    font-weight: 700;
+    margin-bottom: 1.6rem;
+}
+
+/*-----------------------------------*\
+  #OTHERS
+\*-----------------------------------*/
+.first {
+    text-align: center;
+    padding-top: 8.8rem;
+    padding-bottom: calc(6.4rem / 2);
+}
+
+.first-desc {
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.second {
+    padding-top: calc(6.4rem / 2);
+    padding-bottom: 6.4rem;
+}
+
+.free {
+    font-size: 1.5rem;
+    font-weight: 400;
+    background-color: var(--blue-gradient);
+    border-radius: 10px;
+    color: #FFFFFF;
+    width: 100%;
+    padding-block: 1.8rem;
+    margin-bottom: 2.4rem;
+    box-shadow: 0px 8px 0px 0px hsla(0, 0%, 0%, 0.15);
+
+}
+
+.free span {
+    font-weight: 500;
+}
+
+.form-container {
+    padding: 2.4rem;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0px 8px 0px 0px hsla(0, 0%, 0%, 0.15);
+
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.outline-input {
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid hsla(0, 0%, 87%, 1);
+}
+
+.outline-input.error::before{
+    content: '';
+    position: absolute;
+    right: 2rem;
+    top: 1.6rem;
+    background-image: url('../images/icon-error.svg');
+    height: 2.4rem;
+    width: 2.4rem;
+    background-size: cover;
+}
+
+.outline-input input {
+    height: 5.6rem;
+    padding-left: 2rem;
+    z-index: 1000;
+}
+
+.outline-input input:focus {
+    outline: none;
+}
+
+.outline-input input::placeholder {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #3D3B48;
+    opacity: 0.75;
+}
+
+.outline-input.error input {
+    border: 2px solid red;
+    border-radius: 5px;
+}
+
+.outline-input.success input {
+    border: 2px solid green;
+    border-radius: 5px;
+}
+
+.error-message {
+    height: 1.6rem;
+    color: var(--red-color);
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+.submit-btn {
+    width: 100%;
+    text-transform: uppercase;
+    padding-block: 1.5rem;
+    color: #FFFFFF;
+    background-color: var(--green-color);
+    box-shadow: 0px -4px 0px 0px hsla(0, 0%, 0%, 0.09) inset;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.agree-terms {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    color: hsla(247, 32%, 72%, 1);
+}
+
+.agree-terms span {
+    color: hsla(0, 100%, 74%, 1);
+    font-weight: 700;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/*-----------------------------------*\
+  #MEDIAS
+\*-----------------------------------*/
+/*768px*/
+@media screen and (min-width: 768px) {
+    body {
+        background-image: url('../images/bg-intro-desktop.png');
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    section {
+        display: flex;
+        gap: 4.5rem;
+    }
+
+    .first {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        padding: 0;
+        padding-left: 2.4rem;
+    }
+
+    .first, .second {
+        flex: 1;
+    }
+
+    .first > div {
+        text-align: right;
+    }
+
+    .title, .first-desc {
+        max-width: 52.5rem;
+        text-align: left;
+    }    
+
+    .second {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding: 0;
+        padding-right: 2.4rem;
+    }
+
+    .second > div {
+        max-width: 54rem;
+        width: 100%;
+    }
+}

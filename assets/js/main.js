@@ -11,43 +11,56 @@ const errorMessage = document.querySelector('.error-message')
 form.addEventListener('submit', event => {
     event.preventDefault();
     
-    validateFirstName(firstName);
-    validateLastName(lastName);
+    validateFirstName(firstName, 'First Name cannot be empty');
+    validateLastName(lastName, 'Last Name cannot be empty');
     validateEmail(email);
-    validatePassword(password)
+    validatePassword(password, 'Password cannot be empty');
 })
 
-const validateFirstName = (firstName) => {
+const validateFirstName = (firstName, message) => {
     if(firstName.value===''){
-        setError(firstName)        
+        setError(firstName);
+        errorMessageDisplay(firstName, message)
     } else {
-        setSuccess(firstName)
+        setSuccess(firstName);
+        errorMessageDisplayErase(firstName);
     }
 }
 
-const validateLastName = (lastName) => {
+const validateLastName = (lastName, message) => {
     if(lastName.value===''){
-        setError(lastName)        
+        setError(lastName);  
+        errorMessageDisplay(lastName, message)      
     } else {
-        setSuccess(lastName)
+        setSuccess(lastName);
+        errorMessageDisplayErase(lastName);
     }
 }
 
 const validateEmail = (email) => {
     if(isValidEmail(email.value)){
-        setSuccess(email)
+        setSuccess(email);
+        errorMessageDisplayErase(email);
     } else if(email.value === '') {
-        setError(email)
+        setError(email);        
+        const outlineInput = email.parentElement;
+        const inputContainer = outlineInput.parentElement;
+        inputContainer.querySelector('.error-message').textContent = 'Email cannot be empty'
     } else {
         setError(email)
+        const outlineInput = email.parentElement;
+        const inputContainer = outlineInput.parentElement;
+        inputContainer.querySelector('.error-message').textContent = 'Looks like this is not an email'
     }
 }
 
-const validatePassword = (password) => {
+const validatePassword = (password, message) => {
     if(password.value===''){
-        setError(password)        
+        setError(password);
+        errorMessageDisplay(password, message)    
     } else {
-        setSuccess(password)
+        setSuccess(password);
+        errorMessageDisplayErase(password);
     }
 }
 
@@ -57,38 +70,9 @@ const setSuccess = (element) => {
 }
 
 const setError = (element) => {
-    element.parentElement.classList.remove('success');
-    element.parentElement.classList.add('error');
-}
-
-const isValidEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-
-// const messageErrorOutput = (element) => {
-//     const parentInput = element.parentElement
-//     parentInput.querySelector('.error-message').textContent = "cannot be empty"
-//     console.log('deu certo')
-// }
-
-
-/*const setError = (element, message) => {
     const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.textContent = message;
+    inputControl.classList.remove('success');
     inputControl.classList.add('error');
-    inputControl.classList.remove('success')
-}
-
-const setSuccess = element => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error')
-
-    errorDisplay.textContent = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error')
 }
 
 const isValidEmail = email => {
@@ -96,32 +80,14 @@ const isValidEmail = email => {
     return re.test(String(email).toLowerCase());
 }
 
-const validateInputs = ()=>{
-    const firstNameValue = firstName.value.trim()
-    const lastNameValue = lastName.value.trim()
-    const emailValue = email.value.trim()
-    const passwordValue = password.value.trim()
-
-    if(firstNameValue==='') {
-        setError(username, 'First Name cannot be empty')
-    } else {
-        setSuccess(username)
-    }
-
-    if(emailValue===''){
-        setError(email, 'Looks like this not an email')
-    } else if (!isValidEmail(emailValue)){
-        setError(email, 'Looks like this not an email')
-    } else {
-        setSuccess(email);
-    }
-
-    if(passwordValue==='') {
-        setError(password, 'Password cannot be empty');
-    } else if (passwordValue.length < 8) {
-        setError(password, 'Password cannot be empty');
-    } else {
-        setSuccess(password)
-    }
+const errorMessageDisplay = (element, message) => {
+    const outlineInput = element.parentElement;
+    const inputContainer = outlineInput.parentElement;
+    inputContainer.querySelector('.error-message').textContent = message
 }
-*/
+
+const errorMessageDisplayErase = (element) => {
+    const outlineInput = element.parentElement;
+    const inputContainer = outlineInput.parentElement;
+    inputContainer.querySelector('.error-message').textContent = ''
+}
